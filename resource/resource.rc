@@ -23,12 +23,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName",      "Curit"
             VALUE "FileDescription",  "断电自动休眠/关机监控工具"
-            VALUE "FileVersion",      "2.0.0.0"
+            VALUE "FileVersion",      "2.0.1.0"
             VALUE "InternalName",     "AutoShutDownPC.exe"
             VALUE "LegalCopyright",   "Copyright © 2024-2026 Curit"
             VALUE "OriginalFilename", "AutoShutDownPC.exe"
             VALUE "ProductName",      "AutoShutDownPC"
-            VALUE "ProductVersion",   "2.0.0.0"
+            VALUE "ProductVersion",   "2.0.1.0"
         END
     END
     BLOCK "VarFileInfo"
