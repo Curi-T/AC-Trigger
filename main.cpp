@@ -43,7 +43,7 @@ ULONGLONG g_powerOffTime = 0; // 电源断开时间
 ULONGLONG g_exeTime = 0; // 预计执行时间
 bool g_isCountingDown = false; // 是否正在倒计时
 
-UINT g_uMsgTaskbarCreated = 0;  // 任务栏重建消息ID
+UINT g_uMsgTaskbarCreated = 0; // 任务栏重建消息ID
 
 
 bool IsAutoStartEnabled();
@@ -103,7 +103,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
             // 挂载到主菜单
             AppendMenuW(hPopMenu, MF_POPUP, (UINT_PTR) hDelayMenu, delayMenuText);
 
-            AppendMenuW(hPopMenu, MF_STRING | (g_isActive ? MF_CHECKED : MF_UNCHECKED), ID_TRAY_TOGGLE, L"断电休眠模式");
+            AppendMenuW(hPopMenu, MF_STRING | (g_isActive ? MF_CHECKED : MF_UNCHECKED),
+                        ID_TRAY_TOGGLE, L"启用监测");
             AppendMenuW(hPopMenu, MF_SEPARATOR, 0, NULL);
             AppendMenuW(hPopMenu, MF_STRING, ID_TRAY_EXIT, L"退出程序");
 
@@ -240,9 +241,9 @@ DWORD LoadConfig(const char *name, DWORD defaultValue) {
 }
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow) {
+                      _In_opt_ HINSTANCE hPrevInstance,
+                      _In_ LPWSTR lpCmdLine,
+                      _In_ int nCmdShow) {
     HANDLE hMutex = CreateMutexA(NULL, TRUE, "AutoShutDownPC_Unique_Mutex");
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         return 0; // 程序已在运行，直接退出
@@ -268,7 +269,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     nid.hIcon = LoadIconW(GetModuleHandle(NULL), L"IDI_ICON1");
     // 兜底逻辑
     if (!nid.hIcon) {
-        nid.hIcon = LoadIconW(NULL, (LPCWSTR)IDI_APPLICATION);
+        nid.hIcon = LoadIconW(NULL, (LPCWSTR) IDI_APPLICATION);
         DWORD error = GetLastError();
     }
     Shell_NotifyIconW(NIM_ADD, &nid);
